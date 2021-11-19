@@ -1,6 +1,12 @@
 from flask import Flask, request, send_file, jsonify
 from bin.filters import apply_filter
-app = Flask(__name__) 
+import sys
+import logging
+
+app = Flask(__name__)
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
+
 filters_available = [
    "blur",
    "contour",
